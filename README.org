@@ -4,6 +4,29 @@
 
 Do not use SHA-1 unless you have to! [[https://en.wikipedia.org/wiki/SHA-1#Birthday-Near-Collision_Attack_%E2%80%93_first_practical_chosen-prefix_attack][SHA-1 is practically broken]]. Use a hash function from the [[https://en.wikipedia.org/wiki/SHA-2][SHA-2]] or [[https://en.wikipedia.org/wiki/SHA-3][SHA-3]] family instead.
 
+** How to build
+
+To build the library:
+```
+mkdir build
+cd build
+cmake .. [-DBUILD_SHARED_LIBS=OFF]
+```
+to build the tests:
+```
+cd tests
+mkdir build
+cd build
+cmake .. 
+```
+
+** How fast is it?
+
+For a file of 1G
+
+	- Linux command sha1sum: ~1471ms
+	- SHA1: ~1369ms
+
 ** License
 
 100% Public Domain
@@ -15,3 +38,4 @@ Do not use SHA-1 unless you have to! [[https://en.wikipedia.org/wiki/SHA-1#Birth
 - [[https://njh.eu/][Volker Diels-Grabsch]] (Translation to simpler C++ Code)
 - [[https://riot.so/][Eugene Hopkinson]] (Safety improvements)
 - [[http://zlatko.michailov.org][Zlatko Michailov]] (Header-only library)
+- [[dan-machado@yandex.com][Dan Machado]] (Optimization)

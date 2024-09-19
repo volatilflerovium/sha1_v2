@@ -19,8 +19,8 @@
         -- Zlatko Michailov <zlatko@michailov.org>
 */
 
-#ifndef SHA1_HPP
-#define SHA1_HPP
+#ifndef SHA1_OLD_HPP
+#define SHA1_OLD_HPP
 
 
 #include <cstdint>
@@ -29,7 +29,6 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-
 
 class SHA1
 {
