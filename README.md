@@ -15,11 +15,12 @@ websocket protocol.
 
 ## Performance
 
-For a file of 1GB under Debian 11 with AMD Ryzen7
+Performace tests run under Debian 11 with AMD Ryzen7 processor.
 
+For a file of 1GB
    - SHA1 previous version: ~1870ms
-	- Linux command sha1sum: ~1471ms
-	- SHA1 optimized: ~1340ms (under Linux with mmap) and ~1530ms (for Linux and Windows using std::fread)
+   - Linux command sha1sum: ~1471ms
+   - SHA1 optimized: ~1340ms (under Linux with mmap) and ~1530ms (for Linux and Windows using std::fread)
 
 On a 1 GB file (in seconds)
 
