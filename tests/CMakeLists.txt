@@ -25,14 +25,24 @@ endif()
 
 #---------------------------------------------------------------------
 
+add_library(SHA1_lib INTERFACE)
+
+target_include_directories(
+	SHA1_lib
+	INTERFACE
+	"${CMAKE_SOURCE_DIR}/../include"
+)
+
+#---------------------------------------------------------------------
+
 set(TEST test_sha1)
 
 add_executable(${TEST} test_sha1.cpp)
 
-target_include_directories(
-	${TEST}
-	PUBLIC
-	"${PARENT_DIR}/include"
+target_link_libraries(
+	"${TEST}"
+	PRIVATE
+	SHA1_lib
 )
 
 #---------------------------------------------------------------------
@@ -56,8 +66,8 @@ add_executable(
 	big_file_test.cpp
 )
 
-target_include_directories(
-	${TEST}
-	PUBLIC
-	"${PARENT_DIR}/include"
+target_link_libraries(
+	"${TEST}"
+	PRIVATE
+	SHA1_lib
 )
