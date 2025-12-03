@@ -10,14 +10,12 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 
 get_filename_component(PARENT_DIR ../ ABSOLUTE)
 
-if(NDEBUG)
-	add_definitions(-DNDEBUG=1)
-endif() 
-
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+	add_definitions(-D_WIN32)
 	add_compile_options("/O2")
 else()
+	add_definitions(-D_LINUX)
    if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 		message(WARNING "Assuming system in Linux")
 	endif()
@@ -25,11 +23,16 @@ else()
 	add_compile_options("-g")
 endif()
 
-find_library(
-	SHA1SUM_LIB
-	NAMES sha1sum 
-	PATHS "${PARENT_DIR}/lib" 
-	REQUIRED
+#---------------------------------------------------------------------
+
+set(TEST test_sha1)
+
+add_executable(${TEST} test_sha1.cpp)
+
+target_include_directories(
+	${TEST}
+	PUBLIC
+	"${PARENT_DIR}/include"
 )
 
 #---------------------------------------------------------------------
@@ -46,19 +49,11 @@ endif()
 
 #---------------------------------------------------------------------
 
-# Using refactored version as compiled library
-
-set(TEST "test_new_library")
+set(TEST "big_file_test")
 
 add_executable(
 	${TEST}
-	file_test_library.cpp
-)
-
-target_link_libraries(
-	${TEST}
-	PRIVATE
-	${SHA1SUM_LIB}
+	big_file_test.cpp
 )
 
 target_include_directories(
@@ -66,28 +61,3 @@ target_include_directories(
 	PUBLIC
 	"${PARENT_DIR}/include"
 )
-
-#---------------------------------------------------------------------
-
-# new version as header only
-
-set(TEST "test_new_header_only")
-
-add_executable(
-	${TEST}
-	file_test_new_header_only.cpp
-)
-
-#---------------------------------------------------------------------
-
-# OLD header only
-
-set(TEST "test_old_header_only")
-
-add_executable(
-	${TEST}
-	file_test_old.cpp
-)
-
-#---------------------------------------------------------------------
-

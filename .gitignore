@@ -1,11 +1,3 @@
 /.vscode/
 /demo_sha1
 /test_sha1
-*~
-build/*
-bin/*
-lib/*
-*/build/*
-*/bin/*
-*/*/build/*
-*/*/bin/*
